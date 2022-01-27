@@ -1,0 +1,39 @@
+--- g2reverb-0.7.1/Makefile.orig	2022-01-26 21:49:03.184213202 +0100
++++ g2reverb-0.7.1/Makefile	2022-01-26 22:03:56.709372561 +0100
+@@ -20,21 +20,22 @@
+ 
+ 
+ CPPFLAGS += -I. -fPIC -D_REENTRANT
+-CXXFLAGS += -Wall -O2
++CXXFLAGS += -Wall
++INSTALL_PLUGINS_DIR=/usr/lib/ladspa
+ 
+ all:	g2reverb.so
+ 
+ 
+ REVERBS_O = reverbs.o reverbs_if.o greverb.o exp2ap.o
+ g2reverb.so:	$(REVERBS_O)	
+-	g++ -shared  -o $@  $(REVERBS_O)
++	$(CXX) $(LDFLAGS) -shared  -o $@  $(REVERBS_O)
+ 
+ reverbs.o:	ladspaplugin.h reverbs.h greverb.h
+ reverbs_if.o:	ladspaplugin.h reverbs.h greverb.h
+ 
+ 
+ install:	g2reverb.so
+-	cp  *.so /usr/lib/ladspa
++	cp -p  *.so $(DESTDIR)$(INSTALL_PLUGINS_DIR)
+ 
+ clean:
+ 	rm -rf *~ *.o *.so
+--- g2reverb-0.7.1/ladspaplugin.h.orig	2022-01-26 21:49:03.187546517 +0100
++++ g2reverb-0.7.1/ladspaplugin.h	2022-01-26 22:04:11.969289891 +0100
+@@ -23,7 +23,7 @@
+ #define __LADSPAPLUGIN_H
+ 
+ 
+-#include "ladspa.h"
++#include <ladspa.h>
+ 
+ 
+ class LadspaPlugin

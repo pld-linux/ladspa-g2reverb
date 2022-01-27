@@ -1,12 +1,12 @@
 Summary:	Stereo reverb LADSPA plugin
 Summary(pl.UTF-8):	Wtyczka LADSPA - stereofoniczny pogłos
-Name:		ladspa-rev-plugins
+Name:		ladspa-g2reverb
 Version:	0.7.1
 Release:	1
 License:	GPL v2+
 Group:		Applications/Sound
-Source0:	http://kokkinizita.linuxaudio.org/linuxaudio/downloads/REV-plugins-%{version}.tar.bz2
-# Source0-md5:	9f0be0d26592f67ba5fe16102c6bc332
+Source0:	http://kokkinizita.linuxaudio.org/linuxaudio/downloads/g2reverb-%{version}.tar.bz2
+# Source0-md5:	072c2af1f0ed526be432ede7e7a529ae
 Patch0:		%{name}-misc_fixes.patch
 URL:		http://kokkinizita.linuxaudio.org/linuxaudio/ladspa/index.html
 BuildRequires:	ladspa-devel
@@ -23,7 +23,7 @@ Ta wtyczka LADSPA zawiera cyfrową implementację stereofonicznego
 efektu pogłosu.
 
 %prep
-%setup -q -n REV-plugins-%{version}
+%setup -q -n g2reverb-%{version}
 %patch0 -p1
 
 %build
@@ -47,4 +47,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README
-%attr(755,root,root) %{_libdir}/ladspa/zita-reverbs.so
+%attr(755,root,root) %{_libdir}/ladspa/g2reverb.so
