@@ -24,7 +24,7 @@ efektu pogłosu.
 
 %prep
 %setup -q -n g2reverb-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 CPPFLAGS="%{rpmcppflags}" \
